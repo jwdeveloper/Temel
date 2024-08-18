@@ -18,7 +18,6 @@ if __name__ == '__main__':
 
     #temel.enable_debug(True, 'C:\\Users\\ja\\PycharmProjectsss\\Tement\\tests\\output')
     temel.load_templates('C:\\Users\\ja\\PycharmProjectsss\\Tement\\tests\\templates')
-
     start_time = time.time()
     output = temel.parse("test", data)
     end_time = time.time()

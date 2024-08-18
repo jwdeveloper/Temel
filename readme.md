@@ -11,8 +11,8 @@
 🚀 *Html elements server side renderer* ️🚀
 
 <div align="center" >
-<a href="https://central.sonatype.com/artifact/io.github.jwdeveloper.spigot.commands/core" target="blank" >
-<img src="https://img.shields.io/maven-central/v/io.github.jwdeveloper.spigot.commands/core" width="20%" >
+<a href="https://pypi.org/project/temel/" target="blank" >
+<img src="https://img.shields.io/badge/pip_install-temel-blue" width="20%" >
 </a>
 
 <a href="https://discord.gg/e2XwPNTBBr" target="blank" >
@@ -65,7 +65,7 @@ pip install temel
         <slot.header/>
     </header>
     <article>
-        <slot.article/>
+        <slot.content/>
     </article>
 </div>
 ```
@@ -80,11 +80,11 @@ pip install temel
         Page Header Message
     </layout.header>
 
-    <layout.article>
+    <layout.content>
         {{% for button in buttons %}}
         <CustomButton name={{button.name}}/>
             {{% endfor %}}
-    </layout.article>
+    </layout.content>
 </layout>
 ```
 
@@ -94,7 +94,7 @@ pip install temel
 
 ```python
 
-from temel import parse, load_templates
+import temel
 
 if __name__ == '__main__':
     context = {
@@ -109,8 +109,9 @@ if __name__ == '__main__':
                 'name': 'Profile'
             }]
     }
-    output = parse("Page.html", context)
-
+   
+    temel.load_templates('C:\\templates')
+    output = temel.parse("Page.html", context)
     with open('output.html', 'w') as f:
         f.write(output)
 ```
@@ -127,7 +128,7 @@ if __name__ == '__main__':
         </layout.header>
     </header>
     <article>
-        <layout.article>
+        <layout.content>
             <div id="custom-button" style="background-color: green">
                 <button>Home</button>
             </div>
@@ -137,7 +138,7 @@ if __name__ == '__main__':
             <div id="custom-button" style="background-color: green">
                 <button>Profile</button>
             </div>
-        </layout.article>
+        </layout.content>
     </article>
 </div>
 ```
