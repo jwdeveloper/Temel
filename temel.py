@@ -7,7 +7,13 @@ from jinja2 import Template, Undefined, Environment
 from typing import Any, Dict, List
 import copy
 
-from temel_types import HtmlTemplate
+
+class HtmlTemplate:
+    def __init__(self):
+        self.name: str = ''  # Name of the file
+        self.path: str = ''  # Path to the file
+        self.content: str = ''  # Content of the file
+
 
 debbugFolder = 'C:\\Users\\ja\\PycharmProjectsss\\Tement\\output'
 templatesPath: str = 'C:\\Users\\ja\\PycharmProjectsss\\Tement\\elements'
