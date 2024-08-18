@@ -27,7 +27,15 @@
 
 # Introduction
 
-A Spigot/Paper library dedicated for simplifying commands registration for your plugin!
+Have you ever felt that `Jinja` templates are too harsh to work with, however
+making frontend in `JavaScript` frameworks makes you 🤮? Then you found the good place!
+
+
+Temel is hybrid between React like components and Jinja templates.
+You can define elements and different html files, then 
+use them as Html tags adequate to file name it is from.
+
+
 
 See the [documentation](https://github.com/jwdeveloper/Temel) to see more advanced examples!
 
@@ -36,7 +44,7 @@ contributions and ideas. Feel free to make pull requests with missing/new featur
 
 ## Getting started
 
-1. Install the dependencie
+1. #### Install the dependencie
 
 ```xml
 pip install temel
@@ -44,7 +52,7 @@ pip install temel
 
 <br>
 
-2. Define templates
+2. #### Define templates
 
 `CustomButton.html`
 
