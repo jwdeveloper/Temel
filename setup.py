@@ -10,7 +10,7 @@ setup(
     ],
     include_package_data=True,
     description="Elements based HTML template renderer",
-    long_description=open('README.md').read(),
+    long_description=open('readme.md').read(),
     long_description_content_type="text/markdown",
     url="https://github.com/jwdeveloper/Temel",
     author="JW",
