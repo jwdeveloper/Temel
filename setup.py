@@ -5,15 +5,16 @@ setup(
     version="1.0.0",
     packages=find_packages(),
     install_requires=[
-        # List your package dependencies here
+        'beautifulsoup4>=4.9.0',
+        'Jinja2>=3.1.4,<4.0.0',
     ],
     include_package_data=True,
     description="Elements based HTML template renderer",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/your-repo-name",
+    url="https://github.com/jwdeveloper/Temel",
     author="JW",
-    author_email="your.email@example.com",
+    author_email="jacekwoln@gmail.com",
     license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
