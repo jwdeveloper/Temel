@@ -59,7 +59,6 @@ pip install temel
 `CustomButton.html`
 
 ```html
-
 <div id="custom-button" style="background-color: green">
     <button>{{name}}</button>
 </div>
@@ -68,7 +67,6 @@ pip install temel
 `Layout.html`
 
 ```html
-
 <div id="layout">
     <header>
         Header section
@@ -83,17 +81,15 @@ pip install temel
 `Page.html`
 
 ```html
-
 <layout>
-
     <layout.header>
         Page Header Message
     </layout.header>
 
     <layout.content>
         {{% for button in buttons %}}
-        <CustomButton name={{button.name}}/>
-            {{% endfor %}}
+            <CustomButton name={{button.name}}/>
+        {{% endfor %}}
     </layout.content>
 </layout>
 ```
