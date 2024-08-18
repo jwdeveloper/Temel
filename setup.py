@@ -7,6 +7,7 @@ setup(
     name="temel",
     version="1.0.1",
     packages=find_packages(),
+    py_modules=['temel'],
     install_requires=[
         'beautifulsoup4>=4.9.0',
         'Jinja2>=3.1.4,<4.0.0',
