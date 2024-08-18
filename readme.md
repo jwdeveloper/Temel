@@ -100,7 +100,7 @@ pip install temel
 
 <br>
 
-3. Call the renderer, let's render 'Page.html'
+3. Call the renderer. Let's render `Page.html`
 
 ```python
 
