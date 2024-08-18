@@ -31,13 +31,15 @@ Have you ever felt that `Jinja` templates are too harsh to work with, however
 making frontend in `JavaScript` frameworks makes you 🤮? Then you found the good place!
 
 
+
+<br>
+<br>
+
 Temel is hybrid between React like components and Jinja templates.
 You can define elements and different html files, then 
 use them as Html tags adequate to file name it is from. [Example](#define-templates)
 
 
-
-See the [documentation](https://github.com/jwdeveloper/Temel) to see more advanced examples!
 
 Join the support [discord](https://discord.gg/2hu6fPPeF7) and visit the `#programming` channel for questions,
 contributions and ideas. Feel free to make pull requests with missing/new features, fixes, etc
