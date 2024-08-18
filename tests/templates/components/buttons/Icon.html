@@ -1,0 +1,80 @@
+<a type="button"
+   class="btn-icon {% if item.link == current_page %}btn-icon-active{% else %}btn-icon-inactive{% endif %}"
+   href="/{{link}}"
+   title="{{ name }}">
+<i class="fas {{ icon  }}"></i>
+</a>
+
+<style>
+
+    .btn-small i {
+        display: inline;
+        font-size: 17px !important;
+    }
+
+    .btn-small {
+        display: inline;
+        margin: 0;
+        font-size: 15px !important;
+    }
+
+    .btn-icon {
+        margin: 2px 0 2px 0;
+        margin-top: 0.5em;
+        color: var(--primary-color);
+        width: 70px;
+        height: 70px;
+        font-weight: 700;
+        font-size: 18px;
+        text-align: center;
+        transition: background-color 0.1s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        display: flex;
+        border-radius: 1.2em;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--secondary-color);
+    }
+
+    .btn-icon:hover {
+        border: 2px solid #e0e0e0;
+
+        font-weight: 700;
+        font-size: 18px;
+        transform: scale(1.04);
+        box-shadow: 1px 2px 22px var(--shadow-color); /* Shadow properties */
+        background: white;
+        color: var(--info-color);
+        -webkit-text-fill-color: var(--info-color);
+        text-decoration: none;
+    }
+
+    .btn-icon-small {
+        height: 40px;
+        width: 40px;
+        font-size: 6px;
+        box-shadow: 1px 2px 13px rgba(0, 0, 0, 0.24);
+    }
+
+    .btn-icon-small:hover {
+        height: 40px;
+        font-size: 6px;
+        width: 40px;
+        border-radius: 1.2em;
+        transform: scale(1.5);
+    }
+
+    .btn-icon-active {
+
+        border: 2px solid #e0e0e0;
+
+        font-weight: 700;
+        font-size: 18px;
+
+        transform: scale(1.04);
+        box-shadow: 1px 2px 22px var(--shadow-color); /* Shadow properties */
+        background: white;
+        color: var(--info-color);
+        -webkit-text-fill-color: var(--info-color);
+        text-decoration: none;
+    }
+</style>

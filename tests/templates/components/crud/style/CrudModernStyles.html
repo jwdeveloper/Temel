@@ -1,0 +1,145 @@
+<style>
+    .crud {
+        font-size: var(--font-size-medium);
+
+
+        background-color: var(--glass-color);
+        box-shadow:  0px 2px 15px var(--shadow-color);
+        padding: 0.3em;
+        border-radius: var(--border-radious);
+        border: 0.05em solid var(--border-color);
+        color: var(--text-color);
+        z-index: 3;
+    }
+
+    .crud-table {
+        width: 100%; /* Ensure the table takes full width */
+        height: 100%;
+        font-size: var(--font-size-medium);
+
+        max-height: 500px; /* Adjust this value to control the visible row count */
+        overflow-y: auto; /* Enable vertical scrolling */
+        display: block; /* Allow control over the table's width and height */
+
+
+        border-collapse: separate; /* Ensure the border-radius is applied */
+        border-spacing: 0; /* Remove any default spacing between cells */
+
+        border-radius: 0.5em;
+        box-shadow: inset 0px 2px 5px rgb(63, 63, 44);
+    }
+
+    .crud-table tbody {
+        /*height: 100px; !* Adjust this to fit the number of rows visible *!*/
+        overflow-y: auto; /* Enable scrolling in the table body */
+        display: block;
+        width: 100%; /* Ensure the body takes full width */
+    }
+
+    .crud-table thead, .crud-table tbody {
+        display: table;
+        width: 100%; /* Ensure both header and body take full width */
+    }
+
+    .crud-table thead {
+        position: sticky;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        top: 0;
+        z-index: 100;
+
+    }
+
+    .crud-table td, .crud-table th {
+        padding: 8px 16px;
+        border-bottom: 1px solid #ddd;
+        box-sizing: border-box; /* Ensure padding is included in width */
+
+    }
+
+    .crud-header
+    {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .crud-actions
+    {
+        display: flex; gap: 5px;
+        justify-content: flex-end;
+        padding: 1em; 
+        padding-right: 1.5em;
+        align-self: flex-end;
+    }
+    
+
+    .crud-action-icon {
+        font-size: var(--font-size-small);
+        margin-right: 2px;
+
+    }
+
+    .crud-action-icon:hover {
+        color: var(--info-color);
+        cursor: pointer;
+    }
+
+    .crud-column {
+        font-size: var(--font-size-medium);
+        font-weight: 500;
+        flex-direction: column;
+    }
+
+    .crud-row-cell
+    {
+
+        max-height: 50px;
+    }
+
+    .crud-row {
+        max-height: 50px;
+        cursor: pointer;
+        font-size: var(--font-size-medium);
+        transition: box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
+        background-color: rgba(217, 212, 212, 0.32)
+    }
+
+    .crud-row:hover {
+        background-color: rgba(255, 255, 255, 0.68) !important; /* Slightly stronger on hover */
+        box-shadow: inset 0px 2px 5px var(--shadow-hover-color);
+    }
+
+    .crud-row-selected {
+        background-color: #ececec !important;
+        box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.34);
+    }
+
+
+    .resizer {
+        width: 2px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+        cursor: col-resize;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 10;
+    }
+
+    .resizer:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .crud-table th, .crud-table td {
+        position: relative; /* Ensure relative positioning for resizer */
+        min-width: 40px; /* Ensure a minimum width */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .crud-column {
+        position: relative;
+        white-space: nowrap;
+    }
+</style>

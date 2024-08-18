@@ -1,0 +1,32 @@
+<content class="grid"/>
+
+<style>
+
+    :root {
+        --grid-gap: "20px";
+    }
+
+    .grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px; 
+    }
+
+
+    .grid.two-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.three-columns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.gap-10 {
+        gap: 10px;
+    }
+
+    .grid.gap-30 {
+        gap: 30px;
+    }
+</style>

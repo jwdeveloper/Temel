@@ -1,0 +1,78 @@
+<div class="mb-3 form-field">
+    <label for="{{id}}" class="form-label" data-bs-toggle="tooltip" title="{{tooltip}}">{{label}}</label>
+
+    <div class="input-icon-wrapper">
+        <i class="fas {{icon}} input-icon" data-bs-toggle="tooltip" title="{{tooltip}}"></i>
+        <select class="form-select" id="{{id}}" data-bs-toggle="tooltip" title="{{tooltip}}">
+            <option value="" selected disabled>{{placeholder}}</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+    </div>
+    <div class="input-message">
+        {{message}}
+    </div>
+</div>
+
+<style>
+    .form-field {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .input-icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 10px;
+        color: #6c757d;
+        font-size: var(--font-size-small);
+        pointer-events: none;
+        transition: color 0.3s ease;
+    }
+
+    .form-select {
+        padding-left: 2.5em; /* Make space for the icon */
+        border-radius: 0.5em;
+        box-shadow: inset 0px 2px 5px var(--shadow-color);
+        font-size: var(--font-size-small);
+        appearance: none; /* Removes default dropdown arrow */
+        background-image: url('data:image/svg+xml;charset=UTF8,%3Csvg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg"%3E%3Cpolygon points="70,90 100,50 40,50" fill="%236c757d" /%3E%3C/svg%3E');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+
+    .form-select:focus + .input-icon-wrapper .input-icon {
+        color: #020a17;
+    }
+
+    .form-select:hover {
+        box-shadow: inset 0px 2px 5px var(--shadow-hover-color);
+    }
+
+    .form-label {
+        margin-bottom: 0.2rem;
+        color: #6c757d;
+        font-weight: 500;
+        font-size: var(--font-size-medium);
+        display: block;
+    }
+
+    .input-message {
+        color: var(--error-color);
+        font-size: var(--font-size-small);
+        margin-top: 0.25rem;
+        display: none;
+    }
+
+    .form-select-error {
+        border-color: var(--error-color);
+        border-width: 0.07em;
+    }
+</style>

@@ -1,0 +1,53 @@
+<button class="btn-shadow {{class}}"
+        id="{{id}}"
+        method="GET"
+        href="{{link}}"
+        title="{{title}}">
+    <i id="icon" class="fas {{  icon  }}"  title="{{title}}"></i>
+    <i id="loading" class="fas fa-spinner fa-spin" style="display: none"></i>
+    {{  name  }}
+   
+</button>
+
+<style id="iconButton">
+    i {
+        font-size: 25px; /* Adjust the size as needed */
+    }
+
+    .btn-shadow i {
+        margin-right: 10px; /* Adjust this value to increase or decrease the spacing */
+    }
+
+
+    .btn-shadow:focus {
+        outline: none;
+    }
+
+    .btn-shadow {
+        min-width: 100px;
+        border: 1px solid #d2d2d2;
+        font-weight: 400;
+        color: rgba(22, 22, 64, 1);
+        transform: scale(1.04);
+        padding: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        border-radius: 0.3em;
+        background-color: var(--secondary-color);
+
+        display: flex;
+        align-content: space-between;
+        align-items: center; /* Aligns icon and text vertically */
+        justify-content: center; /* Aligns icon and text horizontally, if needed */
+
+        transition: color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.4s ease-in-out; /* Transition for box-shadow is set to 0.5s */
+        text-decoration: none; /* Ensure no underline by default */
+    }
+
+    .btn-shadow:hover {
+        transform: scale(1.2);
+        color: rgba(72, 72, 199, 1);
+        box-shadow: 0px 2px 20px var(--shadow-hover-color);
+        text-decoration: none; /* Ensure no underline on hover */
+    }
+</style>

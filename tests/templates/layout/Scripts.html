@@ -1,0 +1,63 @@
+<script id="-1" class="common-scripts">
+    function findById(id) {
+        return document.getElementById(id);
+    }
+
+    function findAllById(id) {
+        return document.querySelectorAll('#' + id);
+    }
+
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    function setLoadingIcon(buttonId, isLoading, target) {
+        let button = target;
+        if (button === null) {
+            button = document.getElementById(buttonId);
+        }
+        if (button === null) {
+            console.log('Button not FOUND!')
+            return
+        }
+
+        // Find the icon and loading elements inside the button
+        let icon = button.querySelector('#icon');
+        let loading = button.querySelector('#loading');
+        console.log('Enabling aniotmaiton!!')
+        if (isLoading) {
+            // Hide the regular icon and show the loading spinner
+            icon.style.display = 'none';
+            loading.style.display = 'inline-block';
+        } else {
+            // Show the regular icon and hide the loading spinner
+            icon.style.display = 'inline-block';
+            loading.style.display = 'none';
+        }
+    }
+
+    function onElementClick(buttonId, callback) {
+        const buttons = document.querySelectorAll(`[id="${buttonId}"]`);
+        if (buttons.length > 0) {
+            buttons.forEach(button => {
+
+                button.addEventListener('click', callback);
+            });
+        } else {
+            console.error(`No elements with ID '${buttonId}' found.`);
+        }
+    }
+
+  
+    
+    function onInit(callback) {
+        document.addEventListener('DOMContentLoaded', () => {
+            callback()
+        });
+    }
+
+    function wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+</script>

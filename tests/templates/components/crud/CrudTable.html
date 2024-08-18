@@ -1,0 +1,88 @@
+<CrudScripts/>
+<CrudModernStyles/>
+<div class="crud blur">
+
+    <div class="crud-header">
+        <content.filters/>
+
+        <div id="crud-actions" class="mt-3 mb-3 ml-2 crud-actions">
+            {% for action in crud.actions %}
+            <content.actions/>
+            {% if action.active %}
+            <IconSmall id="crud-action" tag="{{action.name}}" tooltip="{{action.tooltip}}" icon="{{action.icon}}"/>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <table class="crud-table">
+        <thead class="blur">
+        <tr>
+            <td
+                    scope="col"
+                    class="crud-column"
+                    title="{{column.tooltip}}">
+                <div class="column-label">
+                    <input id="crud-checkbox-main" type="checkbox">
+                </div>
+            </td>
+            {% for column in crud.columns %}
+            <td
+                    scope="col"
+                    id="crud-column"
+                    tag="{{column.name}}"
+                    class="crud-column "
+                    title="{{column.tooltip}}">
+
+                <div class="column-label">{{column.label}}</div>
+                <div>
+                    {% if column.sortable %}
+                    <i id="sort-icon" tag="{{ column.name }}" sort="desc" class="fas fa-arrow-up  crud-action-icon"></i>
+                    {% endif %}
+
+                    {% if column.filterable %}
+                    <i id="search-icon" tag="{{ column.name }}" class="fas fa-regular fa-filter  crud-action-icon"></i>
+                    {% endif %}
+
+                    {% if column.filterable %}
+                    <i id="search-reset" tag="{{ column.name }}"
+                       class="fas fa-regular fa-rotate-right  crud-action-icon"></i>
+                    {% endif %}
+                </div>
+            </td>
+            {% endfor %}
+            <td
+                    scope="col"
+                    id="actions"
+                    class="crud-column"
+                    title="{{column.tooltip}}">
+                <div class="column-label">Actions</div>
+            </td>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for row in crud.data %}
+        <tr id="crud-row" class="blur crud-row ">
+
+            <td>
+                <input id="crud-checkbox" type="checkbox">
+            </td>
+
+            {% for field in row %}
+            <td id="crud-row-cell" class="crud-row-cell ">{{field}}</td>
+            {% endfor %}
+            <td style="display: flex; gap:10px; justify-content: flex-end; align-items: center">
+                {% for action in crud.rowsactions %}
+                <IconSmall id="crud-row-action" tag="{{action.name}}" icon="{{action.icon}}"/>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+

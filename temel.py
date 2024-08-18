@@ -3,7 +3,7 @@ import re
 import shutil
 
 from bs4 import BeautifulSoup, NavigableString
-from jinja2 import Template, Undefined, Environment
+from jinja2 import Undefined, Environment
 from typing import Any, Dict, List
 import copy
 
@@ -15,15 +15,28 @@ class HtmlTemplate:
         self.content: str = ''  # Content of the file
 
 
-debbugFolder = 'C:\\Users\\ja\\PycharmProjectsss\\Tement\\output'
-templatesPath: str = 'C:\\Users\\ja\\PycharmProjectsss\\Tement\\elements'
 templates: Dict[str, HtmlTemplate] = {}
-# Configure the environment to allow undefined variables
-env = Environment(undefined=Undefined)
-counter = 0
+SLOT_NAME = 'slot'
+jinja_env = Environment(undefined=Undefined)
+body_children = {}
+render_index = 0
+
+debug = False
+debug_path = ''
 
 
-def init():
+def enable_debug(is_debug: bool = True, debug_output: str = ''):
+    global debug
+    debug = is_debug
+
+    global debug_path
+    debug_path = debug_output
+
+
+def load_templates(templatesPath: str):
+    if debug:
+        print(f"Debug mode enabled!")
+
     if not os.path.exists(templatesPath):
         raise Exception(f"The directory {templatesPath} does not exist.")
 
@@ -43,22 +56,23 @@ def init():
 
             templates[template.name] = template
 
-    print(f"Successfully loaded {len(templates)} templates.")
-    if os.path.exists(debbugFolder):
-        shutil.rmtree(debbugFolder)
-    os.makedirs(debbugFolder)
-
-
-body_children = {}
+    if debug:
+        print(f"Successfully loaded {len(templates)} templates.")
+        if os.path.exists(debug_path):
+            shutil.rmtree(debug_path)
+        os.makedirs(debug_path)
 
 
 def parse(template_name: str, context: Any) -> str:
+    global render_index
+    render_index = 0
+
     template = find_template(template_name)
     parsed = parse_template(template.name, template.content, context)
 
     body_element = parsed.find('body')
     if body_element is None:
-        return parsed.prettify()
+        body_element = parsed.find()
 
     values_ids = []
     for children in body_children.values():
@@ -77,11 +91,8 @@ def parse(template_name: str, context: Any) -> str:
     return parsed.prettify()
 
 
-render_index = 0
-
-
 def parse_template(template_name: str, template_content: str, context: Any) -> BeautifulSoup:
-    jinja_template = env.from_string(template_content)
+    jinja_template = jinja_env.from_string(template_content)
     rendered_html = jinja_template.render(context)
 
     soup = BeautifulSoup(rendered_html, 'html.parser')
@@ -101,15 +112,15 @@ def parse_template(template_name: str, template_content: str, context: Any) -> B
         name = template.name.lower()
         elements = soup.find_all(name)
         for element in elements:
-            print(template.name)
             fragment_element = handle_fragment_element(template, element, context)
+            if fragment_element.find() is None:
+                continue
             element.replace_with(fragment_element.find())
 
     return soup
 
 
 def handle_fragment_element(template: HtmlTemplate, element: Any, context: Any) -> BeautifulSoup:
-    print(template.name)
     content = template.content
     attributes = {}
     # Getting all attributes for the element, and saving it to array
@@ -128,47 +139,58 @@ def handle_fragment_element(template: HtmlTemplate, element: Any, context: Any) 
     for attr_name, attr_value in attributes.items():
         top_element[attr_name] = attr_value
 
-    # Looking for the content nodes
-    sections = {}
-    sections['content'] = []
+    # Looking for the slots nodes
+    slots = {}
+    slots_parents = {}
+    slots[SLOT_NAME] = []
+
     for child in element.children:
         if isinstance(child, NavigableString):
+            slots[SLOT_NAME].append(copy.deepcopy(child))
             continue
 
         child_name = child.name.split('.')
         if len(child_name) < 2:
-            sections['content'].append(copy.deepcopy(child))
+            slots[SLOT_NAME].append(copy.deepcopy(child))
             continue
         if child_name[0] != template.name:
-            sections['content'].append(copy.deepcopy(child))
+            slots[SLOT_NAME].append(copy.deepcopy(child))
             continue
 
         section_name = child_name[1]
-        sections[section_name] = copy.deepcopy(child.children)
+        slots[section_name] = copy.deepcopy(child.children)
+        slots_parents[section_name] = child
 
-    # Placing html in the content nodes
-    for name, value in sections.items():
-        section_name = f'content.{name}'
-        if name == 'content':
-            section_name = 'content'
+    # Placing html in the slots nodes
+    for name, slot_children in slots.items():
+        section_name = f'{SLOT_NAME}.{name}'
+        if name == SLOT_NAME:
+            section_name = SLOT_NAME
 
         section_element = soup.find(section_name)
         if section_element is None:
             continue
 
-        section_element.name = 'div.' + template.name + '.' + name
+        if debug:
+            section_element.name = 'div.' + template.name + '.' + name
+        else:
+            section_element.name = 'div'
 
-        #
-        # for attr_name, attr_value in value.attrs.items():
-        #     section_element[attr_name] = attr_value
-
-        for child in value:
+        for child in slot_children:
             section_element.append(child)
 
-    global render_index
-    render_index += 1
-    with open(debbugFolder + "/" + str(render_index) + "." + template.name + '.html', 'w') as f:
-        f.write(soup.prettify())
+        if name in slots_parents:
+            parent_element = slots_parents[name]
+            for attr_name, attr_value in parent_element.attrs.items():
+             section_element[attr_name] = attr_value
+
+
+
+    if debug:
+        global render_index
+        render_index += 1
+        with open(debug_path + "/" + str(render_index) + "." + template.name + '.html', 'w') as f:
+            f.write(soup.prettify())
 
     return soup
 

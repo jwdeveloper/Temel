@@ -1,0 +1,78 @@
+<layout>
+    <layout.header>
+        <div class="page-header">
+            <h1 class="page-title">{{title}}</h1>
+        </div>
+        <SferaStatus/>
+      
+    </layout.header>
+
+    <layout.panel>
+        <div class="page-panel">
+            <logoIcon/>
+            <menu/>
+            <ProfileIcon/>
+        </div>
+    </layout.panel>
+
+    <layout.content>
+        <content class=" page-content"/>
+    </layout.content>
+
+</layout>
+
+
+<style>
+
+    .page-content {
+        padding: 3em;
+        width: 100%;
+        min-width: 100%;
+        /*background: linear-gradient(to right,  #161640FF, hsl(255, 30%, 55%));*/
+        /*border-radius: 1em;*/
+        /*box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); !* Inner shadow properties *!*/
+    }
+    
+    .page-panel {
+        position: fixed;
+        left: 0;
+        z-index: 9999;
+        background-color: var(--secondary-color);
+        padding-top: 2em;
+        padding-bottom: 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+      
+
+        flex: 1;
+        gap: 10px;
+        top: -2%;
+        max-width: 120px;
+        height: 102%;
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5); /* Inner shadow properties */
+        transition: left 5s ease-in-out;
+    }
+
+    .page-header {
+
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding-left: 10%;
+        padding-right: 2em;
+        color: var(--secondary-color);
+    }
+
+    .page-title {
+        font-size: 2em;
+        font-weight: 500;
+    }
+
+   
+    
+
+</style>
+

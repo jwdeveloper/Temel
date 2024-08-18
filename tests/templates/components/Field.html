@@ -1,0 +1,74 @@
+<div class="mb-3 form-field">
+    <label for="{{id}}" class="form-label" data-bs-toggle="tooltip" title="{{tooltip}}">{{label}} </label>
+    <div class="input-icon-wrapper">
+        {% if icon != '' %}
+        <i class="fas {{icon}} input-icon" data-bs-toggle="tooltip" title="{{tooltip}}"></i>
+        {% endif %}
+        <input  type="{{type}}" class="form-control " id="{{id}}" placeholder="{{placeholder}}"   data-bs-toggle="tooltip"  title="{{tooltip}}">
+    </div>
+    <div class="input-message">
+        {{message}}
+    </div>
+
+</div>
+
+
+<style>
+
+    .form-field {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+
+    .input-icon-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 10px;
+        color: var(--text-color);
+        font-size: var(--font-size-small);
+        pointer-events: none;
+        transition: color 0.3s ease
+    }
+
+    .form-control {
+        padding-left: 2.5em;
+        border-radius: 0.2em;
+        box-shadow: inset 0px 2px 5px var(--shadow-color);
+        font-size: var(--font-size-small)
+    }
+
+    .form-control:focus + .input-icon-wrapper .input-icon {
+        color: #020a17;
+    }
+
+    .form-control:hover {
+        box-shadow: inset 0px 2px 5px var(--shadow-hover-color);
+    }
+
+    .form-label {
+        margin-bottom: 0.2rem;
+        color: var(--text-color);
+        font-weight: 500;
+        font-size: var(--font-size-medium);
+        display: block;
+    }
+
+    .input-message {
+        color: var(--error-color);
+        font-size: var(--font-size-small);
+        margin-top: 0.25rem;
+        display: none;
+    }
+
+    .form-control-error {
+        border-color: var(--error-color);
+        border-width: 0.07em;
+    }
+
+
+</style>

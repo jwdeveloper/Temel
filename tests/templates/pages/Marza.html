@@ -1,0 +1,117 @@
+<Page>
+
+    <CrudTable>
+        <CrudTable.actions>
+            <IconButton id="dekretacja" name="Zadekretuj" icon="fa fa-cloud-arrow-up"/>
+        </CrudTable.actions>
+
+        <CrudTable.filters>
+            <div class="mb-3 pl-3" style="display: flex">
+                <div class="bottom-panel row" style="max-width: 600px">
+                    <div class="col-6">
+                        <Field id="netto" label="Wartość netto" icon="fa-money-bill" type="number"></Field>
+                    </div>
+                    <div class="col-6">
+                        <Field id="brutto" label="Wartość brutto" icon="fa-money-bill"
+                               type="number"></Field>
+                    </div>
+                    <div class="col-6">
+                        <Field id="wartosc.marza" label="Wartość marża" icon="fa-money-bill"
+                               type="number"></Field>
+                    </div>
+                    <div class="col-6">
+                        <Field id="wartosc.brutto" label="Wartość brutto" icon="fa-money-bill"
+                               type="number"></Field>
+                    </div>
+                </div>
+
+                <label for="exampleSelect" class="form-label">Wybierz opcje:</label>
+                <select class="form-select" id="exampleSelect" aria-label="Default select example">
+                    <option selected>Niezadekretowane</option>
+                    <option value="1">Wszystkie</option>
+                    <option value="2">Niezadekretowane</option>
+                </select>
+            </div>
+        </CrudTable.filters>
+    </CrudTable>
+
+
+</Page>
+
+<script id="999">
+
+    onElementClick("dekretacja", () => {
+        let selectedData = crud.getSelected()
+        let dataJson = JSON.stringify(selectedData)
+
+        setLoadingIcon('dekretacja', true, null)
+        fetch('/marza/dekretacja',
+            {
+                method: "POST",
+                body: dataJson,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                setLoadingIcon('dekretacja', false, null)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+
+
+    })
+
+    onRowSelected((event) => {
+        console.log("Row selected!", event)
+    })
+
+    onRowAction((event) => {
+        console.log("Row onRowAction!", event)
+    })
+
+    onAction((event) => {
+        console.log("on action triggered!", event)
+    })
+
+    onInit(() => {
+
+    })
+</script>
+
+<script id="navigate with enter">
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent the default Enter key behavior
+            let formElements = document.querySelectorAll('input, select, textarea');
+            let currentIndex = Array.prototype.indexOf.call(formElements, document.activeElement);
+            let nextElement = formElements[currentIndex + 1];
+
+            if (nextElement) {
+                nextElement.focus();
+            } else {
+                // If no next element, optionally submit the form
+                document.querySelector('form').submit();
+            }
+        }
+    });
+</script>
+
+<style>
+    .bottom-panel {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+</style>
+
+

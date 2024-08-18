@@ -1,0 +1,46 @@
+<div class="sfera-image-container {% if sfera.connected == false %}invalid  {% else %}valid   {% endif %}"  title="{{sfera.message}}">
+    <div style="display: flex">
+        <Image class="sfera-image" link="https://prima.pc.pl/wp-content/uploads/2014/04/nexo-logo.jpg"></Image>
+        <IconSmall icon="{{sfera.icon}}" name="{{sfera.message}}" class="invalid"></IconSmall>
+    </div>
+    <div class="sfera-title" style="text-align: center">Połączenie z nexo</div>
+</div>
+
+<style>
+
+    .sfera-title {
+        font-size: 10px;
+    }
+
+    .sfera-image {
+        height: 50px;
+        width: 60px;
+    }
+
+    .sfera-image-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0.2em;
+        border-radius: 1em;
+
+        color: var(--primary-color);
+        background-color: rgba(255, 255, 255);
+        margin-left: 10px;
+        margin-right: 10px;
+        align-content: center;
+        border: 3px solid var(--secondary-color);
+        box-shadow: inset 0px 0px 5px 2px var(--shadow-color);
+
+        justify-content: center;
+    }
+    
+    .invalid {
+        color: red;
+        border-color: red;
+    }
+
+    .sfera-image-container.valid {
+        color: #00ff15;
+        border-color: #00ff15;
+    }
+</style>

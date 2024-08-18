@@ -94,7 +94,7 @@ pip install temel
 
 ```python
 
-from temel import parse, init
+from temel import parse, load_templates
 
 if __name__ == '__main__':
     context = {
