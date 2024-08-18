@@ -62,10 +62,10 @@ pip install temel
 <div id="layout">
     <header>
         Header section
-        <layout.header/>
+        <slot.header/>
     </header>
     <article>
-        <layout.article/>
+        <slot.article/>
     </article>
 </div>
 ```
@@ -76,15 +76,15 @@ pip install temel
 
 <layout>
 
-    <slot.header>
+    <layout.header>
         Page Header Message
-    </slot.header>
+    </layout.header>
 
-    <slot.article>
+    <layout.article>
         {{% for button in buttons %}}
         <CustomButton name={{button.name}}/>
             {{% endfor %}}
-    </slot.article>
+    </layout.article>
 </layout>
 ```
 
