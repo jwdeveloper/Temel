@@ -33,7 +33,7 @@ making frontend in `JavaScript` frameworks makes you 🤮? Then you found the go
 
 Temel is hybrid between React like components and Jinja templates.
 You can define elements and different html files, then 
-use them as Html tags adequate to file name it is from.
+use them as Html tags adequate to file name it is from. [Example](#define-templates)
 
 
 
