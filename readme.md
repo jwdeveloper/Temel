@@ -1,10 +1,11 @@
 <div align="center" >
 <a target="blank" >
-<img src="https://github.com/user-attachments/assets/95823146-0171-4619-8eb0-d862f801a5ad" width="15%" >
+<img src="https://github.com/user-attachments/assets/bc3f7094-ffa8-4d6d-aadd-7a51fa5aaf69" width="15%" >
 </a>
 </div>
 <div align="center" >
 <h1>Temel</h1>
+
 
 
 🚀 *Html elements server side renderer* ️🚀
