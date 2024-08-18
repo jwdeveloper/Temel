@@ -1,0 +1,64 @@
+<div id="content-container">
+
+</div>
+
+<script>
+
+    console.log('hello world!')
+
+    function fetchHtmlAsText(url) {
+        // Use the fetch API to request the HTML file
+        fetch(url)
+            .then(response => {
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Return the response as text
+                return response.text();
+            })
+            .then(htmlText => {
+                // Output the HTML text or do something with it
+                console.log(htmlText);
+
+
+                container.innerHTML = htmlText;
+
+                // Extract the content of the <render> tag
+                const renderElement = tempDiv.querySelector('render');
+                let renderContent = '';
+
+                if (renderElement) {
+                    renderContent = renderElement.innerHTML; // Get the inner HTML of the <render> tag
+                } else {
+                    console.log('<render> tag not found in the fetched content.');
+                }
+
+                // Log or use the extracted content
+                console.log('Extracted <render> content:', renderContent);
+
+                // You can now store the content in a variable, for example:
+                const extractedRenderContent = renderContent;
+
+                // Example of inserting the extracted content into the DOM
+                const container = document.getElementById('content-container');
+                if (container) {
+                    container.innerHTML = extractedRenderContent;
+                }
+
+                container.querySelectorAll('script').forEach(script => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                    document.body.removeChild(newScript);
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+
+    fetchHtmlAsText('/Tement/output/example.html')
+
+
+</script>
